@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $mail->Port = 465;
 
         // Send email to info@ezems.co.ke
-        $mail->setFrom('info@ezems.co.ke', 'EZEMS TECH DEVELOPER');
+        $mail->setFrom('info@ezems.co.ke', 'Ezems Health Tech ');
         $mail->addAddress($to);
         $mail->isHTML(true);
         $mail->Subject = $subject;
@@ -91,4 +91,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     header('Location: ../index.html');
     exit;
 }
-?>
+
