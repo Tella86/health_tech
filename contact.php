@@ -64,14 +64,14 @@ echo "<script>window.location.href ='contact.php'</script>";
 				<div class="col span_2_of_3">
 				  <div class="contact-form">
 				  	<h2>Contact Us</h2>
-					    <form name="contactus" method="post">
+					    <form action="contact_us/send_message.php" name="contactus" method="post">
 					    	<div>
 						    	<span><label>NAME</label></span>
 						    	<span><input type="text" name="fullname" required="true" value=""></span>
 						    </div>
 						    <div>
 						    	<span><label>E-MAIL</label></span>
-						    	<span><input type="email" name="emailid" required="ture" value=""></span>
+						    	<span><input type="email" name="email" required="ture" value=""></span>
 						    </div>
 						    <div>
 						     	<span><label>MOBILE.NO</label></span>
@@ -79,7 +79,7 @@ echo "<script>window.location.href ='contact.php'</script>";
 						    </div>
 						    <div>
 						    	<span><label>Description</label></span>
-						    	<span><textarea name="description" required="true"> </textarea></span>
+						    	<span><textarea name="message" required="true"> </textarea></span>
 						    </div>
 						   <div>
 						   		<span><input type="submit" name="submit" value="Submit"></span>
