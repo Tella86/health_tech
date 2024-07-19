@@ -3,7 +3,6 @@ require 'phpmailer/src/Exception.php';
 require 'phpmailer/src/PHPMailer.php';
 require 'phpmailer/src/SMTP.php';
 
-
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\PHPMailer;
 
@@ -32,12 +31,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
         $mail->Username = 'ezems.developers@gmail.com';
-        $mail->Password = 'glgu ktrc jcgf jety ';
-        $mail->SMTPSecure = 'ssl';
+        $mail->Password = 'glgu ktrc jcgf jety';
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
         $mail->Port = 465;
 
         // Send email to info@ezems.co.ke
-        $mail->setFrom('info@ezems.co.ke', 'Ezems Health Tech ');
+        $mail->setFrom('info@ezems.co.ke', 'Ezems Health Tech');
         $mail->addAddress($to);
         $mail->isHTML(true);
         $mail->Subject = $subject;
@@ -61,34 +60,42 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <p>Health Tech Team</p>
             <p>+254101086123</p>
             <p>24/7 Support</p>
-
         ";
         $mail->send();
-          header('Location: ../index.html');
+        //   header('Location: ../index.html');
 
     } catch (Exception $e) {
         echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
     }
 
-    include '../hms/include/config.php';  // Include the database connection file
+    // Include the database connection file
+    define('DB_SERVER', 'localhost');
+    define('DB_USER', 'root');
+    define('DB_PASS', 'Elon2508/*-');
+    define('DB_NAME', 'healthtech');
+    $con = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
+
+    if (mysqli_connect_errno()) {
+        echo "Failed to connect to MySQL: " . mysqli_connect_error();
+    }
 
     // Insert message into the database
-    $stmt = $conn->prepare("INSERT INTO messages (name, email, mobileno, message) VALUES (?, ?, ?, ?)");
+    $stmt = $con->prepare("INSERT INTO messages (name, email, mobileno, message) VALUES (?, ?, ?, ?)");
     $stmt->bind_param("ssss", $name, $email, $mobileno, $message);
     $stmt->execute();
     $stmt->close();
 
     // Insert notification into the database
     $notification = "New message from $name";
-    $stmt = $conn->prepare("INSERT INTO notifications (notification) VALUES (?)");
+    $stmt = $con->prepare("INSERT INTO notifications (notification) VALUES (?)");
     $stmt->bind_param("s", $notification);
     $stmt->execute();
     $stmt->close();
 
-    $conn->close();
+    $con->close();
 
     // Redirect to index.php after successful email sending and database insertion
     header('Location: ../index.html');
     exit;
 }
-
+?>

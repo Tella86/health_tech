@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Admin Dashboard</title>
+        <style>
+            .notification-icon {
+                position: relative;
+                display: inline-block;
+                cursor: pointer;
+                font-size: 24px;
+            }
+            .notification-icon .badge {
+                position: absolute;
+                top: -10px;
+                right: -10px;
+                padding: 5px 10px;
+                border-radius: 50%;
+                background: red;
+                color: white;
+                display: none;
+                animation: blink 1s infinite;
+            }
+            @keyframes blink {
+                0% { background-color: red; }
+                50% { background-color: transparent; }
+                100% { background-color: red; }
+            }
+            .notification-list {
+                display: none;
+                position: absolute;
+                top: 40px;
+                right: 0;
+                background: #fff;
+                border: 1px solid #ccc;
+                max-width: 300px;
+                max-height: 400px;
+                overflow-y: auto;
+                z-index: 1000;
+            }
+            .notification-list ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+            .notification-list li {
+                padding: 10px;
+                border-bottom: 1px solid #ccc;
+            }
+            .notification-list li a {
+                text-decoration: none;
+                color: #333;
+            }
+        </style>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    </head>s
+<body>
+    <!-- Notification Icon -->
+    <div class="notification-icon">
+        <i class="fas fa-envelope"></i>
+        <div class="badge" id="notification-badge">0</div>
+    </div>
+
+    <!-- Notification List -->
+    <div class="notification-list" id="notification-list">
+        <ul id="notification-items"></ul>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            // Fetch notifications
+            function fetchNotifications() {
+                $.get('fetch_notifications.php', function(data) {
+                    let notifications = JSON.parse(data);
+                    if (notifications.length > 0) {
+                        $('#notification-badge').text(notifications.length).show();
+                        $('#notification-items').empty();
+                        notifications.forEach(function(notification) {
+                            $('#notification-items').append(`
+                                <li>
+                                    <a href="view_message.php?id=${notification.id}">
+                                        ${notification.notification}
+                                    </a>
+                                </li>
+                            `);
+                        });
+                    } else {
+                        $('#notification-badge').hide();
+                        $('#notification-items').empty();
+                    }
+                });
+            }
+
+            // Check for new notifications every 5 seconds
+            setInterval(fetchNotifications, 5000);
+
+            // Initial fetch
+            fetchNotifications();
+
+            // Toggle notification list visibility
+            $('.notification-icon').click(function() {
+                $('#notification-list').toggle();
+            });
+
+            // Hide notification list when clicking outside
+            $(document).click(function(event) {
+                if (!$(event.target).closest('.notification-icon, #notification-list').length) {
+                    $('#notification-list').hide();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
