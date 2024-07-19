@@ -21,7 +21,7 @@
 					<div class="navbar-collapse collapse">
 						<ul class="nav navbar-right">
 							<!-- start: MESSAGES DROPDOWN -->
-								<li  style="padding-top:2% ">
+								<li  style="padding-top:2% float: left;">
 								<h2>Ezems Health Tech System</h2>
 							</li>
 						

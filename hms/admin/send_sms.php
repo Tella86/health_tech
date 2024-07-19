@@ -47,6 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         mysqli_close($con);
 
         echo "Message sent and reply stored successfully!";
+        header('location: dashboard.php');
     } catch (Exception $e) {
         error_log("Error: " . $e->getMessage());
         echo "Failed to send message.";

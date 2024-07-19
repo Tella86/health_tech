@@ -38,22 +38,57 @@ $con->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View Message</title>
     <style>
-        .message-container {
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
             padding: 20px;
         }
+        .chat-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 10px;
+        }
+        .message-container {
+            padding: 10px 0;
+        }
+        .message {
+            background-color: #e5e5ea;
+            padding: 10px 20px;
+            border-radius: 20px;
+            margin: 10px 0;
+            max-width: 80%;
+        }
+        .message.outgoing {
+            background-color: #007bff;
+            color: white;
+            align-self: flex-end;
+        }
+        .message.incoming {
+            background-color: #e5e5ea;
+            align-self: flex-start;
+        }
         .reply-form {
+            display: flex;
+            flex-direction: column;
             margin-top: 20px;
         }
         .reply-form textarea {
             width: 100%;
             padding: 10px;
             margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
         }
         .reply-form button {
             padding: 10px 20px;
             background-color: #007bff;
             color: white;
             border: none;
+            border-radius: 10px;
             cursor: pointer;
         }
         .reply-form button:hover {
@@ -62,12 +97,14 @@ $con->close();
     </style>
 </head>
 <body>
-    <div class="message-container">
+    <div class="chat-container">
         <?php if ($message): ?>
-            <h1>Message from <?php echo htmlspecialchars($message['name']); ?></h1>
-            <p>Email: <?php echo htmlspecialchars($message['email']); ?></p>
-            <p>Mobile No: <?php echo htmlspecialchars($message['mobileno']); ?></p>
-            <p>Message: <?php echo htmlspecialchars($message['message']); ?></p>
+            <div class="message-container">
+                <div class="message incoming">
+                    <strong>From: <?php echo htmlspecialchars($message['name']); ?></strong><br>
+                    <p><?php echo nl2br(htmlspecialchars($message['message'])); ?></p>
+                </div>
+            </div>
             
             <div class="reply-form">
                 <h2>Reply to this Message</h2>

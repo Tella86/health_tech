@@ -174,11 +174,10 @@ $num_rows22 = mysqli_num_rows($sql);
                                 </div>
                             </div>
 
-
+<?php require 'display.html';?>
 
                         </div>
                     </div>
-
 
 
 
