@@ -37,15 +37,49 @@ $con->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View Message</title>
+    <style>
+        .message-container {
+            padding: 20px;
+        }
+        .reply-form {
+            margin-top: 20px;
+        }
+        .reply-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .reply-form button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .reply-form button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-    <?php if ($message): ?>
-        <h1>Message from <?php echo htmlspecialchars($message['name']); ?></h1>
-        <p>Email: <?php echo htmlspecialchars($message['email']); ?></p>
-        <p>Mobile No: <?php echo htmlspecialchars($message['mobileno']); ?></p>
-        <p>Message: <?php echo htmlspecialchars($message['message']); ?></p>
-    <?php else: ?>
-        <p>No message found.</p>
-    <?php endif; ?>
+    <div class="message-container">
+        <?php if ($message): ?>
+            <h1>Message from <?php echo htmlspecialchars($message['name']); ?></h1>
+            <p>Email: <?php echo htmlspecialchars($message['email']); ?></p>
+            <p>Mobile No: <?php echo htmlspecialchars($message['mobileno']); ?></p>
+            <p>Message: <?php echo htmlspecialchars($message['message']); ?></p>
+            
+            <div class="reply-form">
+                <h2>Reply to this Message</h2>
+                <form action="send_sms.php" method="post">
+                    <textarea name="reply" rows="5" required placeholder="Type your reply here..."></textarea>
+                    <input type="hidden" name="mobileno" value="<?php echo htmlspecialchars($message['mobileno']); ?>">
+                    <button type="submit">Send Reply</button>
+                </form>
+            </div>
+        <?php else: ?>
+            <p>No message found.</p>
+        <?php endif; ?>
+    </div>
 </body>
 </html>
