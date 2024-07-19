@@ -74,6 +74,7 @@ $con->close();
                 <form action="send_sms.php" method="post">
                     <textarea name="reply" rows="5" required placeholder="Type your reply here..."></textarea>
                     <input type="hidden" name="mobileno" value="<?php echo htmlspecialchars($message['mobileno']); ?>">
+                    <input type="hidden" name="id" value="<?php echo htmlspecialchars($message['id']); ?>">
                     <button type="submit">Send Reply</button>
                 </form>
             </div>

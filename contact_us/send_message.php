@@ -80,8 +80,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     // Insert message into the database
-    $stmt = $con->prepare("INSERT INTO messages (name, email, mobileno, message) VALUES (?, ?, ?, ?)");
-    $stmt->bind_param("ssss", $name, $email, $mobileno, $message);
+    $stmt = $con->prepare("INSERT INTO messages (name, email, mobileno, message, reply) VALUES (?, ?, ?, ?, ?)");
+    $stmt->bind_param("sssss", $name, $email, $mobileno, $message, $reply);
     $stmt->execute();
     $stmt->close();
 
