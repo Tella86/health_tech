@@ -12,10 +12,11 @@ if(isset($_POST['submit']))
     $bs=$_POST['bs'];
     $weight=$_POST['weight'];
     $temp=$_POST['temp'];
+   $NextVisitDate=$_POST['NextVisitDate'];
    $pres=$_POST['pres'];
    
  
-      $query.=mysqli_query($con, "insert   tblmedicalhistory(PatientID,BloodPressure,BloodSugar,Weight,Temperature,MedicalPres)value('$vid','$bp','$bs','$weight','$temp','$pres')");
+      $query.=mysqli_query($con, "insert   tblmedicalhistory(PatientID,BloodPressure,BloodSugar,Weight,Temperature,NextVisitDate,MedicalPres)value('$vid','$bp','$bs','$weight','$temp','$NextVisitDate','$pres')");
     if ($query) {
     echo '<script>alert("Medicle history has been added.")</script>';
     echo "<script>window.location.href ='manage-patient.php'</script>";
@@ -133,6 +134,7 @@ $ret=mysqli_query($con,"select * from tblmedicalhistory  where PatientID='$vid'"
 <th>Blood Sugar</th>
 <th>Body Temprature</th>
 <th>Medical Prescription</th>
+<th>Next Visit Date</th>
 <th>Visit Date</th>
 </tr>
 <?php  
@@ -144,6 +146,7 @@ while ($row=mysqli_fetch_array($ret)) {
  <td><?php  echo $row['Weight'];?></td>
  <td><?php  echo $row['BloodSugar'];?></td> 
   <td><?php  echo $row['Temperature'];?></td>
+  <td><?php  echo $row['NextVisitDate'];?></td>
   <td><?php  echo $row['MedicalPres'];?></td>
   <td><?php  echo $row['CreationDate'];?></td> 
 </tr>
@@ -187,6 +190,12 @@ while ($row=mysqli_fetch_array($ret)) {
     <th>Body Temprature :</th>
     <td>
     <input name="temp" placeholder="Blood Sugar" class="form-control wd-450" required="true"></td>
+  </tr>
+  <tr>
+    <th>Next Visit Date :</th>
+    <td>
+    <input name="NextVisitDate" placeholder="Select date" class="form-control wd-450" required="true" type="date">
+</td>
   </tr>
                          
      <tr>
