@@ -17,6 +17,7 @@ The database consists of the following tables:
 1. **admin**
    - **Fields:** id, username, password, updationDate
    - Stores administrator credentials and their last update time.
+   - **Additional Features:** Admin can create Zoom meetings and chat rooms, control these sessions, and reply to emails through SMS on the system.
 
 2. **appointment**
    - **Fields:** id, doctorSpecialization, doctorId, userId, consultancyFees, appointmentDate, appointmentTime, postingDate, userStatus, doctorStatus, updationDate
@@ -81,6 +82,8 @@ The database consists of the following tables:
 - **Reports:** View reports of patients over specific periods.
 - **Patient Search:** Search for patients by name and mobile number.
 - **Admin Account Management:** Change admin password.
+- **Zoom and Chat Room Control:** Create and manage Zoom meetings and chat rooms.
+- **SMS Reply:** Reply to emails through SMS on the system.
 
 ### Patient Module
 - **Dashboard:** View profile, appointments, and book new appointments.
@@ -88,6 +91,7 @@ The database consists of the following tables:
 - **Appointment History:** View personal appointment history.
 - **Medical History:** View personal medical history.
 - **Profile Management:** Update profile, change password, and recover password.
+- **Contact Admin:** Contact the admin through the "Contact Us" section and receive instant replies via phone SMS, including Zoom and chat room details.
 
 ### Doctor Module
 - **Dashboard:** View profile and online appointments.
