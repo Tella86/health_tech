@@ -17,7 +17,6 @@ The database consists of the following tables:
 1. **admin**
    - **Fields:** id, username, password, updationDate
    - Stores administrator credentials and their last update time.
-   - **Additional Features:** Admin can create Zoom meetings and chat rooms, control these sessions, and reply to emails through SMS on the system.
 
 2. **appointment**
    - **Fields:** id, doctorSpecialization, doctorId, userId, consultancyFees, appointmentDate, appointmentTime, postingDate, userStatus, doctorStatus, updationDate
@@ -40,7 +39,7 @@ The database consists of the following tables:
    - Manages contact messages from users including admin remarks.
 
 7. **tblmedicalhistory**
-   - **Fields:** ID, PatientID, BloodPressure, BloodSugar, Weight, Temperature, MedicalPres, CreationDate
+   - **Fields:** ID, PatientID, BloodPressure, BloodSugar, Weight, Temperature, MedicalPres, NextVisitDate, CreationDate
    - Records the medical history of patients.
 
 8. **tblpatient**
@@ -55,12 +54,47 @@ The database consists of the following tables:
     - **Fields:** id, fullName, address, city, gender, email, password, regDate, updationDate
     - Contains information about users including their registration details.
 
+11. **category_list**
+    - **Fields:** id, name, description, status, delete_flag, date_created, date_updated
+    - Manages categories for discussion posts.
+
+12. **comment_list**
+    - **Fields:** id, user_id, post_id, comment, date_created
+    - Stores comments on posts by users.
+
+13. **meetings**
+    - **Fields:** id, title, start, end, link
+    - Manages scheduled meetings with links.
+
+14. **messages**
+    - **Fields:** id, name, email, mobileno, message, reply, created_at
+    - Stores messages sent by users and admin replies.
+
+15. **messages_chat**
+    - **Fields:** id, username, message, timestamp, read
+    - Manages chat messages and their read status.
+
+16. **notifications**
+    - **Fields:** id, notification, is_read, created_at
+    - Stores notifications for users.
+
+17. **post_list**
+    - **Fields:** id, user_id, category_id, title, content, status, delete_flag, date_created, date_updated
+    - Manages posts made by users.
+
+18. **system_info**
+    - **Fields:** id, meta_field, meta_value
+    - Stores system metadata.
+
 ## Features
 - **User Management:** Registration, login, and logout functionalities for users and doctors.
 - **Appointment Management:** Booking and managing appointments between patients and doctors.
 - **Medical History:** Recording and viewing patients' medical history.
 - **Contact Management:** Admin and user communication through contact messages.
 - **Logging:** Tracking login and logout activities of users and doctors.
+- **Meetings Management:** Schedule and manage meetings with links.
+- **Chat Room:** Real-time chat functionality for users.
+- **Instant Reply via SMS:** Patients can contact admin through "Contact Us" and get instant replies via phone SMS.
 
 ## Installation and Setup
 1. Clone the repository to your local machine.
@@ -82,8 +116,9 @@ The database consists of the following tables:
 - **Reports:** View reports of patients over specific periods.
 - **Patient Search:** Search for patients by name and mobile number.
 - **Admin Account Management:** Change admin password.
-- **Zoom and Chat Room Control:** Create and manage Zoom meetings and chat rooms.
-- **SMS Reply:** Reply to emails through SMS on the system.
+- **Meetings Management:** Create and manage Zoom meetings.
+- **Chat Room Control:** Oversee chat room activities.
+- **Instant Email Replies via SMS:** Reply to emails through SMS.
 
 ### Patient Module
 - **Dashboard:** View profile, appointments, and book new appointments.
@@ -91,7 +126,9 @@ The database consists of the following tables:
 - **Appointment History:** View personal appointment history.
 - **Medical History:** View personal medical history.
 - **Profile Management:** Update profile, change password, and recover password.
-- **Contact Admin:** Contact the admin through the "Contact Us" section and receive instant replies via phone SMS, including Zoom and chat room details.
+- **Contact Admin:** Use the "Contact Us" form to get instant replies via phone SMS.
+- **Zoom Meetings:** Access scheduled Zoom meetings.
+- **Chat Room:** Engage in real-time chat.
 
 ### Doctor Module
 - **Dashboard:** View profile and online appointments.
