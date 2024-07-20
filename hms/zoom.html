@@ -5,26 +5,38 @@
     <title>Schedule Zoom Meeting</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" />
     <style>
+        :root {
+            --primary-color: #007BFF;
+            --secondary-color: #fbb034; 
+            --background-color: #f4f4f4;
+            --form-background: #fff;
+            --calendar-background: #fff;
+            --text-color: #333;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            color: #333;
+            background-color: var(--background-color);
+            color: var(--text-color);
             margin: 0;
             padding: 20px;
         }
 
         h1 {
             text-align: center;
-            color: #007BFF;
+            color: var(--primary-color);
+            margin-bottom: 20px;
         }
 
         form {
-            background: #fff;
+            background: var(--form-background);
             padding: 20px;
             margin: 20px auto;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            max-width: 400px;
+            box-shadow: var(--box-shadow);
+            border-radius: var(--border-radius);
+            max-width: 500px;
         }
 
         form label {
@@ -37,7 +49,7 @@
         form input[type="datetime-local"],
         form input[type="url"],
         form input[type="submit"] {
-            width: calc(100% - 20px);
+            width: calc(100% - 22px);
             padding: 10px;
             margin-bottom: 15px;
             border: 1px solid #ccc;
@@ -45,34 +57,57 @@
         }
 
         form input[type="submit"] {
-            background-color: #007BFF;
+            background-color: var(--primary-color);
             color: #fff;
             border: none;
             cursor: pointer;
         }
 
         form input[type="submit"]:hover {
-            background-color: #0056b3;
+            background-color: darken(var(--primary-color), 10%);
         }
 
         #calendar-container {
-            max-width: 800px;
+            max-width: 600px; /* Reduced max-width for smaller size */
             margin: 20px auto;
-            background: #fff;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
+            background: var(--calendar-background);
+            padding: 10px; /* Reduced padding for a more compact look */
+            box-shadow: var(--box-shadow);
+            border-radius: var(--border-radius);
         }
 
         #calendar {
-            max-width: 100%;
-            margin: 0 auto;
+            width: 100%;
+            font-size: 0.8em; /* Smaller font size for a more compact appearance */
         }
 
         .fc-event {
-            background-color: #007BFF;
+            background-color: var(--primary-color);
             border: none;
             color: #fff;
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .button-group a {
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            color: #fff;
+            text-align: center;
+            width: 48%;
+        }
+
+        .google-meet {
+            background-color: #34A853; /* Google Meet button color */
+        }
+
+        .zoom {
+            background-color: #007BFF; /* Zoom button color */
         }
     </style>
 </head>
@@ -80,16 +115,21 @@
     <h1>Schedule Zoom Meeting</h1>
     <form id="meeting-form" action="include/schedule.php" method="post">
         <label for="title">Meeting Title:</label>
-        <input type="text" id="title" name="title" required><br><br>
+        <input type="text" id="title" name="title" required><br>
 
         <label for="start">Start Time:</label>
-        <input type="datetime-local" id="start" name="start" required><br><br>
+        <input type="datetime-local" id="start" name="start" required><br>
 
         <label for="end">End Time:</label>
-        <input type="datetime-local" id="end" name="end" required><br><br>
+        <input type="datetime-local" id="end" name="end" required><br>
 
         <label for="link">Zoom Link:</label>
-        <input type="url" id="link" name="link" required><br><br>
+        <input type="url" id="link" name="link" required><br>
+
+        <div class="button-group">
+            <a href="https://meet.google.com" target="_blank" class="google-meet">Google Meet</a>
+            <a href="https://zoom.us" target="_blank" class="zoom">Zoom</a>
+        </div>
 
         <input type="submit" value="Schedule Meeting">
     </form>
@@ -108,7 +148,10 @@
                 height: 'auto',
                 events: 'include/fetch-meetings.php',
                 eventRender: function(event, element) {
-                    element.find('.fc-title').append("<br/>" + event.link);
+                    element.find('.fc-title').append("<br/><a href='" + event.link + "' target='_blank'>Join Meeting</a>");
+                    element.on('click', function () {
+                        window.open(event.link, '_blank');
+                    });
                 }
             });
         });

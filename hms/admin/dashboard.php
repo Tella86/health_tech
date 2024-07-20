@@ -4,17 +4,13 @@ error_reporting(0);
 include('include/config.php');
 include('include/checklogin.php');
 check_login();
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <title>Admin | Dashboard</title>
-
-    <link
-        href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic"
-        rel="stylesheet" type="text/css" />
+    <link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="vendor/fontawesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="vendor/themify-icons/themify-icons.min.css">
@@ -28,33 +24,36 @@ check_login();
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="assets/css/plugins.css">
     <link rel="stylesheet" href="assets/css/themes/theme-1.css" id="skin_color" />
-
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Add necessary styles here */
+        #dashboard-content {
+            padding: 20px;
+        }
+    </style>
 </head>
 
 <body>
     <div id="app">
-        <?php include('include/sidebar.php');?>
+        <?php include('include/sidebar.php'); ?>
         <div class="app-content">
-
-            <?php include('include/header.php');?>
-
+            <?php include('include/header.php'); ?>
             <!-- end: TOP NAVBAR -->
             <div class="main-content">
                 <div class="wrap-content container" id="container">
                     <!-- start: PAGE TITLE -->
+                    <div id="dashboard-content">
+                        <!-- Content will be loaded here -->
+                    </div>
                     <section id="page-title">
                         <div class="row">
                             <div class="col-sm-8">
                                 <h1 class="mainTitle">Admin | Dashboard</h1>
                             </div>
                             <ol class="breadcrumb">
-                                <li>
-                                    <span>Admin</span>
-                                </li>
-                                <li class="active">
-                                    <span>Dashboard</span>
-                                </li>
+                                <li><span>Admin</span></li>
+                                <li class="active"><span>Dashboard</span></li>
                             </ol>
                         </div>
                     </section>
@@ -65,18 +64,18 @@ check_login();
                             <div class="col-sm-4">
                                 <div class="panel panel-white no-radius text-center">
                                     <div class="panel-body">
-                                        <span class="fa-stack fa-2x"> <i
-                                                class="fa fa-square fa-stack-2x text-primary"></i> <i
-                                                class="fa fa-smile-o fa-stack-1x fa-inverse"></i> </span>
+                                        <span class="fa-stack fa-2x">
+                                            <i class="fa fa-square fa-stack-2x text-primary"></i>
+                                            <i class="fa fa-smile-o fa-stack-1x fa-inverse"></i>
+                                        </span>
                                         <h2 class="StepTitle">Manage Users</h2>
-
                                         <p class="links cl-effect-1">
                                             <a href="manage-users.php">
-                                                <?php $result = mysqli_query($con,"SELECT * FROM users ");
-$num_rows = mysqli_num_rows($result);
-{
-?>
-                                                Total Users :<?php echo htmlentities($num_rows);  } ?>
+                                                <?php
+                                                $result = mysqli_query($con, "SELECT * FROM users");
+                                                $num_rows = mysqli_num_rows($result);
+                                                ?>
+                                                Total Users: <?php echo htmlentities($num_rows); ?>
                                             </a>
                                         </p>
                                     </div>
@@ -85,20 +84,19 @@ $num_rows = mysqli_num_rows($result);
                             <div class="col-sm-4">
                                 <div class="panel panel-white no-radius text-center">
                                     <div class="panel-body">
-                                        <span class="fa-stack fa-2x"> <i
-                                                class="fa fa-square fa-stack-2x text-primary"></i> <i
-                                                class="fa fa-users fa-stack-1x fa-inverse"></i> </span>
+                                        <span class="fa-stack fa-2x">
+                                            <i class="fa fa-square fa-stack-2x text-primary"></i>
+                                            <i class="fa fa-users fa-stack-1x fa-inverse"></i>
+                                        </span>
                                         <h2 class="StepTitle">Manage Doctors</h2>
-
                                         <p class="cl-effect-1">
                                             <a href="manage-doctors.php">
-                                                <?php $result1 = mysqli_query($con,"SELECT * FROM doctors ");
-$num_rows1 = mysqli_num_rows($result1);
-{
-?>
-                                                Total Doctors :<?php echo htmlentities($num_rows1);  } ?>
+                                                <?php
+                                                $result1 = mysqli_query($con, "SELECT * FROM doctors");
+                                                $num_rows1 = mysqli_num_rows($result1);
+                                                ?>
+                                                Total Doctors: <?php echo htmlentities($num_rows1); ?>
                                             </a>
-
                                         </p>
                                     </div>
                                 </div>
@@ -106,96 +104,78 @@ $num_rows1 = mysqli_num_rows($result1);
                             <div class="col-sm-4">
                                 <div class="panel panel-white no-radius text-center">
                                     <div class="panel-body">
-                                        <span class="fa-stack fa-2x"> <i
-                                                class="fa fa-square fa-stack-2x text-primary"></i> <i
-                                                class="fa fa-terminal fa-stack-1x fa-inverse"></i> </span>
-                                        <h2 class="StepTitle"> Appointments</h2>
-
+                                        <span class="fa-stack fa-2x">
+                                            <i class="fa fa-square fa-stack-2x text-primary"></i>
+                                            <i class="fa fa-terminal fa-stack-1x fa-inverse"></i>
+                                        </span>
+                                        <h2 class="StepTitle">Appointments</h2>
                                         <p class="links cl-effect-1">
-                                            <a href="book-appointment.php">
-                                                <a href="appointment-history.php">
-                                                    <?php $sql= mysqli_query($con,"SELECT * FROM appointment");
-$num_rows2 = mysqli_num_rows($sql);
-{
-?>
-                                                    Total Appointments :<?php echo htmlentities($num_rows2);  } ?>
-                                                </a>
+                                            <a href="book-appointment.php">Book Appointment</a>
+                                            <br />
+                                            <a href="appointment-history.php">
+                                                <?php
+                                                $sql = mysqli_query($con, "SELECT * FROM appointment");
+                                                $num_rows2 = mysqli_num_rows($sql);
+                                                ?>
+                                                Total Appointments: <?php echo htmlentities($num_rows2); ?>
                                             </a>
                                         </p>
                                     </div>
                                 </div>
                             </div>
-
                             <div class="col-sm-4">
                                 <div class="panel panel-white no-radius text-center">
                                     <div class="panel-body">
-                                        <span class="fa-stack fa-2x"> <i
-                                                class="fa fa-square fa-stack-2x text-primary"></i> <i
-                                                class="fa fa-smile-o fa-stack-1x fa-inverse"></i> </span>
+                                        <span class="fa-stack fa-2x">
+                                            <i class="fa fa-square fa-stack-2x text-primary"></i>
+                                            <i class="fa fa-smile-o fa-stack-1x fa-inverse"></i>
+                                        </span>
                                         <h2 class="StepTitle">Manage Patients</h2>
-
                                         <p class="links cl-effect-1">
                                             <a href="manage-patient.php">
-                                                <?php $result = mysqli_query($con,"SELECT * FROM tblpatient ");
-$num_rows = mysqli_num_rows($result);
-{
-?>
-                                                Total Patients :<?php echo htmlentities($num_rows);  
-} ?>
+                                                <?php
+                                                $result = mysqli_query($con, "SELECT * FROM tblpatient");
+                                                $num_rows = mysqli_num_rows($result);
+                                                ?>
+                                                Total Patients: <?php echo htmlentities($num_rows); ?>
                                             </a>
                                         </p>
                                     </div>
                                 </div>
                             </div>
-
-
-
-
-
                             <div class="col-sm-4">
                                 <div class="panel panel-white no-radius text-center">
                                     <div class="panel-body">
-                                        <span class="fa-stack fa-2x"> <i class="ti-files fa-1x text-primary"></i> <i
-                                                class="fa fa-terminal fa-stack-1x fa-inverse"></i> </span>
-                                        <h2 class="StepTitle"> New Queries</h2>
-
+                                        <span class="fa-stack fa-2x">
+                                            <i class="ti-files fa-1x text-primary"></i>
+                                            <i class="fa fa-terminal fa-stack-1x fa-inverse"></i>
+                                        </span>
+                                        <h2 class="StepTitle">New Queries</h2>
                                         <p class="links cl-effect-1">
-                                            <a href="book-appointment.php">
-                                                <a href="unread-queries.php">
-                                                    <?php 
-$sql= mysqli_query($con,"SELECT * FROM tblcontactus where  IsRead is null");
-$num_rows22 = mysqli_num_rows($sql);
-?>
-                                                    Total New Queries :<?php echo htmlentities($num_rows22);   ?>
-                                                </a>
+                                            <a href="unread-queries.php">
+                                                <?php
+                                                $sql = mysqli_query($con, "SELECT * FROM tblcontactus WHERE IsRead IS NULL");
+                                                $num_rows22 = mysqli_num_rows($sql);
+                                                ?>
+                                                Total New Queries: <?php echo htmlentities($num_rows22); ?>
                                             </a>
                                         </p>
                                     </div>
                                 </div>
                             </div>
-
-<?php require 'display.html';?>
-
+                            <?php require 'display.html'; ?>
                         </div>
                     </div>
-
-
-
-
-
-                    <!-- end: SELECT BOXES -->
-
+                    <!-- end: BASIC EXAMPLE -->
                 </div>
             </div>
         </div>
         <!-- start: FOOTER -->
-        <?php include('include/footer.php');?>
+        <?php include('include/footer.php'); ?>
         <!-- end: FOOTER -->
-
         <!-- start: SETTINGS -->
-        <?php include('include/setting.php');?>
-        <>
-            <!-- end: SETTINGS -->
+        <?php include('include/setting.php'); ?>
+        <!-- end: SETTINGS -->
     </div>
     <!-- start: MAIN JAVASCRIPTS -->
     <script src="vendor/jquery/jquery.min.js"></script>
@@ -217,13 +197,33 @@ $num_rows22 = mysqli_num_rows($sql);
     <!-- end: JAVASCRIPTS REQUIRED FOR THIS PAGE ONLY -->
     <!-- start: CLIP-TWO JAVASCRIPTS -->
     <script src="assets/js/main.js"></script>
-    <!-- start: JavaScript Event Handlers for this page -->
     <script src="assets/js/form-elements.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
     <script>
-    jQuery(document).ready(function() {
-        Main.init();
-        FormElements.init();
-    });
+        $(document).ready(function () {
+            $('#create-zoom-link').click(function (event) {
+                event.preventDefault(); // Prevent the default link action
+                $('#dashboard-content').load('../../hms/zoom.html');
+            });
+            
+            Main.init();
+            FormElements.init();
+            
+            // Calendar
+            $('#calendar').fullCalendar({
+                height: 'auto',
+                contentHeight: 300,
+                events: 'include/fetch-meetings.php',
+                eventRender: function (event, element) {
+                    element.find('.fc-title').append("<br/><a href='" + event.link + "' target='_blank'>Join Meeting</a>");
+                    element.on('click', function () {
+                        window.open(event.link, '_blank');
+                    });
+                }
+            });
+        });
     </script>
     <!-- end: JavaScript Event Handlers for this page -->
     <!-- end: CLIP-TWO JAVASCRIPTS -->
