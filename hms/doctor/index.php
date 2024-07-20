@@ -54,15 +54,32 @@ exit();
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="assets/css/plugins.css">
     <link rel="stylesheet" href="assets/css/themes/theme-1.css" id="skin_color" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+    .doctor-link {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        color: #007bff;
+        font-size: 1.5rem;
+    }
+
+    .doctor-icon {
+        margin-right: 10px;
+        /* Space between icon and text */
+        font-size: 24px;
+    }
+    </style>
 </head>
 
 <body class="login">
     <div class="row">
         <div class="main-login col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4">
             <div class="logo margin-top-30">
-                <a href="../../index.html">
-                    <h2> EHTS | Doctor Login</h2>
-                </a>
+                <a href="../../index.html" class="doctor-link">
+                    <i class="fas fa-user-md doctor-icon" title="Doctor"></i>
+                    <h2 style="color: #007bff;">Doctor Login</h2>
+                    </a>
             </div>
 
             <div class="box-login">
@@ -102,20 +119,23 @@ exit();
                     </fieldset>
                 </form>
 
-               
-					<center><footer class="Copyright">
-						Ezems Tech Developers, 1333 Kilifi, County, Kenya<br>
-					   <p>Copyright &copy; 2024 Ezems Tech Developera | All Rights Reserved</p>
-					   <p>
-									   Follow us on 
-									   <a href='https://www.facebook.com/Ezemstech' target='_blank'>Facebook</a>, 
-									   <a href='https://www.twitter.com/ezems' target='_blank'>Twitter</a>, 
-									   <a href='https://www.instagram.com/ezems' target='_blank'>Instagram</a>
-									   <a href='https://www.linkedin.com/in/ziroh-katana-24b23ba9/' target='_blank'>LinkedIn</a>, and 
-									   <a href='https://github.com/Tella86/Tella86' target='_blank'>GitHub</a>
-								   </p>
-				   </footer></center>
 
+                <center>
+                    <footer class="Copyright">
+                        <p>Ezems Health Tech System, 1333 Kilifi, County, Kenya</p>
+                        <p>&copy; 2024 Ezems Health Tech Syst | All Rights Reserved</p>
+                        <p>
+                            <strong>Follow us on:</strong>
+                            <a href="https://www.facebook.com/Ezemstech" target="_blank">Facebook</a>,
+                            <a href="https://www.twitter.com/ezems" target="_blank">Twitter</a>,
+                            <a href="https://www.instagram.com/ezems" target="_blank">Instagram</a>,
+                            <a href="https://www.linkedin.com/in/ziroh-katana-24b23ba9/" target="_blank">LinkedIn</a>,
+                            <a href="https://github.com/Tella86/Tella86" target="_blank">GitHub</a>
+                        </p>
+                        <p><strong>Powered by:</strong> <a href="https://ezems.co.ke" target="_blank"> Ezems Tech
+                                Developers</a></p>
+                    </footer>
+                </center>
             </div>
 
         </div>
