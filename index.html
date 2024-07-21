@@ -1,8 +1,9 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>EZEMS | HTS</title>
+    <title>EZEMS | HRALTH TECH SYSTEM</title>
     <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link rel="stylesheet" href="css/ziroh.css">
     <link href='http://fonts.googleapis.com/css?family=Ropa+Sans' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="css/responsiveslides.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" />
@@ -10,94 +11,10 @@
     <script src="js/responsiveslides.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
-    <script>
-        $(function () {
-            // Slideshow 1
-            $("#slider1").responsiveSlides({
-                maxwidth: 1600,
-                speed: 600
-            });
+    <script src="js/ziroh.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+   <link rel="icon" href="images/healttech.png" type="image/x-icon">
 
-            // Calendar
-            $('#calendar').fullCalendar({
-                height: 'auto',
-                events: 'hms/include/fetch-meetings.php',
-                eventRender: function(event, element) {
-                    element.find('.fc-title').append("<br/><a href='hms/user-login.php?link=" + event.link + "' target='_blank'>Join Meeting</a>");
-                }
-            });
-
-            // Show calendar popup automatically on page load
-            $(window).on('load', function() {
-                $("#calendar-popup").fadeIn();
-                $("#calendar-overlay").fadeIn();
-            });
-
-            // Close the calendar popup
-            $("#close-calendar").click(function() {
-                $("#calendar-popup").fadeOut();
-                $("#calendar-overlay").fadeOut();
-            });
-        });
-    </script>
-    <style>
-		:root {
-            --orange-yellow-crayola: #fbb034; 
-        }
-        #calendar-popup {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 80%;
-            max-width: 500px;
-            /* background: ; */
-            padding: 15px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-            border-radius: 10px;
-            z-index: 1000;
-        }
-
-        #calendar {
-            max-width: 100%;
-            margin: 0 auto;
-			color: white;
-        }
-
-        .fc-event {
-            background-color: #007BFF;
-            border: none;
-            color: #fff;
-            font-size: 0.9em;
-        }
-
-        #calendar-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 999;
-        }
-
-        #close-calendar {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            cursor: pointer;
-            font-size: 18px;
-            color: #333;
-        }
-
-        #calendar-popup h1 {
-            font-size: 1.5em;
-            margin-bottom: 15px;
-			color: var(--orange-yellow-crayola);
-        }
-    </style>
 </head>
 <body>
     <!--start-wrap-->
@@ -107,9 +24,29 @@
         <div class="wrap">
             <!--start-logo-->
             <div class="logo">
-                <a href="index.html" style="font-size: 30px;">Ezems Health Tech System</a>
+                <a href="index.html" style="font-size: 30px; text-decoration: none;">
+                    <img src="images/healttech.png" alt="Ezems Health Tech System Logo" style="vertical-align: middle; height: 40px; margin-right: 10px;">
+                    Ezems Health Tech System
+                </a>
+                
             </div>
             <!--end-logo-->
+            
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+           
+            <div class="whatsapp-container rotate-icon">
+                <div class="whatsapp-background">
+                  <a href="https://wa.me/0101086123" target="_blank">
+                    <i class="fab fa-whatsapp whatsapp-icon"></i>
+                  </a>
+                </div>
+              </div>
+            
             <!--start-top-nav-->
             <div class="top-nav">
                 <ul>
@@ -122,7 +59,7 @@
         </div>
     </div>
     <!--end-header-->
-
+    <main>
     <!-- Calendar Overlay -->
     <div id="calendar-overlay"></div>
 
@@ -197,9 +134,9 @@
         </div>
     </div>
     <div class="clear"> </div>
-    
+</main>
     <div class="footer">
-        <div class="wrap">
+        <!-- <div class="wrap"> -->
             <center>
                 <footer class="Copyright">
                     <p>Ezems Health Tech System, 1333 Kilifi, County, Kenya</p>
@@ -219,6 +156,31 @@
         </div>
         <div class="clear"> </div>
     </div>
+    <!-- The button with an arrow -->
+    <button id="backToTopBtn" title="Go to top">&#8679;</button>
+
+    <script>
+        // Get the button
+        let mybutton = document.getElementById("backToTopBtn");
+
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function() {scrollFunction()};
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                mybutton.style.display = "block";
+            } else {
+                mybutton.style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        mybutton.onclick = function() {
+            document.body.scrollTop = 0; // For Safari
+            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+        }
+    </script>
+
     <!--end-wrap-->
 </body>
 </html>

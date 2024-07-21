@@ -25,6 +25,8 @@ check_login();
 		<link rel="stylesheet" href="assets/css/styles.css">
 		<link rel="stylesheet" href="assets/css/plugins.css">
 		<link rel="stylesheet" href="assets/css/themes/theme-1.css" id="skin_color" />
+		<link rel="icon" href="../../images/healttech.png" type="image/x-icon">
+
 
 
 	</head>

@@ -31,6 +31,10 @@ body{
 }
 .header{
 	background:url(../images/header-bg.png);
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
 }
 .logo{
 	float:left;
@@ -39,10 +43,15 @@ body{
 .top-nav{
 	float:right;
 }
-.top-nav ul li{
-	display:inline-block;
-	float: left;
-	border-left: 1px solid rgb(31, 132, 224);
+.top-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+.top-nav ul li a:hover, .top-nav li.active > a {
+    background: rgb(50, 133, 209);
+    border-left-color: rgb(50, 133, 209);
 }
 .top-nav ul li:first-child{
 	border-left:none;
@@ -52,12 +61,11 @@ body{
 	background:#3391E7;
 	color: #fff;
 	text-transform: uppercase;
-	padding: 30px;
+	padding: 10px 20px;
 	display: block;
+	text-decoration: none;
 }
-.top-nav ul li a:hover{
-	
-}
+
 .top-nav li.active> a, .top-nav li> a:hover {
 	background: rgb(50, 133, 209);
 	border-left-color:rgb(50, 133, 209);
