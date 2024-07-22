@@ -30,7 +30,6 @@ check_login();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="icon" href="../../images/healttech.png" type="image/x-icon">
-
     <style>
     /* Add necessary styles here */
     #dashboard-content {
@@ -38,7 +37,6 @@ check_login();
     }
     </style>
 </head>
-
 <body>
     <div id="app">
         <?php include('include/sidebar.php'); ?>
