@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Emergency Notification</title>
+    <style>
+      /* Style the modal (background) */
+ .modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.7); /* Darker semi-transparent background */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fff;
+    margin: auto;
+    padding: 30px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 600px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    position: relative;
+    z-index: 1001;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+}
+
+/* Form Styling */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+}
+
+input[type="text"],
+select {
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .modal-content {
+        width: 90%;
+        padding: 20px;
+    }
+
+    button {
+        width: 100%;
+    }
+}
+
+/* Sending Message */
+.sending {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0,0,0,0.7);
+    color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    z-index: 1002;
+}
+    </style>
+</head>
+<body>
+
+<h2>Emergency Notification System</h2>
+
+<!-- Trigger/Open The Modal -->
+<ul>
+    <li><a href="#" style="background-color: brown;" id="emergencyLink">Emergency</a></li>
+</ul>
+
+<!-- The Modal -->
+<div id="emergencyModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <form id="emergencyForm">
+        <label for="senderPhoneNumber">Your Phone Number:</label>
+        <input type="text" id="senderPhoneNumber" name="senderPhoneNumber" required><br><br>
+
+        <label for="emergencyMessage">Select Emergency Case:</label>
+        <select id="emergencyMessage" name="emergencyMessage" required>
+            <option value="Road Accident">Road Accident</option>
+            <option value="Expectant Mother">Expectant Mother</option>
+            <option value="Diabetes">Diabetes</option>
+            <option value="Asthma">Asthma</option>
+            <option value="Heart Attack">Heart Attack</option>
+            <option value="Fire Outbreak">Fire Outbreak</option>
+            <option value="Burglary">Burglary</option>
+            <option value="Medical Emergency">Medical Emergency</option>
+            <option value="Flood">Flood</option>
+            <option value="Earthquake">Earthquake</option>
+            <option value="Child Missing">Child Missing</option>
+            <option value="Poisoning">Poisoning</option>
+            <option value="Severe Allergic Reaction">Severe Allergic Reaction</option>
+        </select><br><br>
+
+        <button type="button" onclick="sendEmergencyNotification()">Send Emergency Notification</button>
+    </form>
+  </div>
+</div>
+
+<script>
+    // Get the modal
+    var modal = document.getElementById("emergencyModal");
+
+    // Get the button that opens the modal
+    var btn = document.getElementById("emergencyLink");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks the button, open the modal 
+    btn.onclick = function(event) {
+        event.preventDefault(); // Prevent default link behavior
+        modal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+
+    // Your existing JavaScript code for sending the notification
+    function sendEmergencyNotification() {
+        var senderPhoneNumber = document.getElementById("senderPhoneNumber").value;
+        var emergencyMessage = document.getElementById("emergencyMessage").value;
+
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                sendPosition(position, senderPhoneNumber, emergencyMessage);
+            }, showError);
+        } else {
+            alert("Geolocation is not supported by this browser.");
+        }
+    }
+
+    function sendPosition(position, senderPhoneNumber, emergencyMessage) {
+        var latitude = position.coords.latitude;
+        var longitude = position.coords.longitude;
+        var phoneNumber = '+254101086123'; // Recipient's phone number
+
+        // Send data to the server
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "send_notification.php", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                alert("Emergency notification sent!");
+            }
+        };
+        xhr.send("latitude=" + latitude + "&longitude=" + longitude + 
+                 "&senderPhoneNumber=" + senderPhoneNumber + 
+                 "&emergencyMessage=" + encodeURIComponent(emergencyMessage) +
+                 "&phoneNumber=" + phoneNumber);
+    }
+
+    function showError(error) {
+        switch(error.code) {
+            case error.PERMISSION_DENIED:
+                alert("User denied the request for Geolocation.");
+                break;
+            case error.POSITION_UNAVAILABLE:
+                alert("Location information is unavailable.");
+                break;
+            case error.TIMEOUT:
+                alert("The request to get user location timed out.");
+                break;
+            case error.UNKNOWN_ERROR:
+                alert("An unknown error occurred.");
+                break;
+        }
+    }
+</script>
+
+</body>
+</html>
